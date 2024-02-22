@@ -6,17 +6,17 @@
    Latest update 2017-04-21 by F Lundevall
 
 
-	 This file was modified 2017-02-28 by Mattias Stahre and Gustaf Halvardsson
+   Modified 2024-02-28 by Alexander Danho and Luis Gabriel Patio Mirador
 
    For copyright and licensing, see file COPYING */
 
-#include <stdint.h>   /* Declarations of uint_32 and the like */
-#include <pic32mx.h>  /* Declarations of system-specific addresses etc */
-#include "mipslab.h"  /* Declatations for these labs */
+#include <stdint.h>
+#include <pic32mx.h>
+#include "mipslab.h"
 
-
-int main(void) {
-        /*
+int main(void)
+{
+	    /*
 	  This will set the peripheral bus clock to the same frequency
 	  as the sysclock. That means 80 MHz, when the microcontroller
 	  is running at 80 MHz. Changed 2017, as recommended by Axel.
@@ -52,7 +52,7 @@ int main(void) {
 	/* SPI2STAT bit SPIROV = 0; */
 	SPI2STATCLR = 0x40;
 	/* SPI2CON bit CKP = 1; */
-        SPI2CONSET = 0x40;
+	SPI2CONSET = 0x40;
 	/* SPI2CON bit MSTEN = 1; */
 	SPI2CONSET = 0x20;
 	/* SPI2CON bit ON = 1; */
@@ -67,17 +67,16 @@ int main(void) {
 
 	display_image(96, icon);
 
-
 	labinit(); /* Do any lab-specific initialization */
 
-	InteruptFlag40ms = 0;
+	interuptFlag25fps = 0;
 
-
-	while( 1 )
+	while (1)
 	{
-		if(InteruptFlag40ms == 1){
-	  labwork(); /* Do lab-specific things again and again */
-		InteruptFlag40ms = 0;
+		if (interuptFlag25fps == 1)
+		{
+			labwork(); /* Do lab-specific things again and again */
+			interuptFlag25fps = 0;
 		}
 	}
 	return 0;

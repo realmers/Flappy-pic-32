@@ -6,7 +6,7 @@
    This file should be changed by YOU! So you must
    add comment(s) here with your name(s) and date(s):
 
-   This file modified 2017-02-28 by Mattias Stahre and Gustaf Halvardsson
+   Modified 2024-02-28 by Alexander Danho and Luis Gabriel Patio Mirador
 
    For copyright and licensing, see file COPYING */
 
@@ -16,12 +16,12 @@
 #include <math.h>
 #include <stdio.h>
 #define   TMR2PERIOD ((80000000 / 256) / 25 )  // = 31250 < 65 536 (=2^16)
-int TacoX = 15;       //Tacon som flyger
+int TacoX = 15;
 int TacoY = 5;
 
 
 // Initieras globalt
-volatile int* initPORTE = (volatile int*) 0xbf886110;
+volatile int* portE = (volatile int*) 0xbf886110;
 
 
 // make install TTYDEV=/dev/cu.usbserial-AJV9JY30
@@ -29,9 +29,8 @@ volatile int* initPORTE = (volatile int*) 0xbf886110;
 /* Interrupt Service Routine */
 void user_isr( void )
 {
-  IFSCLR(0) = 0x100;    // Nollställ interuptflaggan!
-  InteruptFlag40ms = 1;
-  return;
+  IFSCLR(0) = 0x100;  
+  interuptFlag25fps = 1;
 }
 
 /* Lab-specific initialization goes here */
@@ -40,10 +39,10 @@ void labinit( void )
 
 
 // Initiera TRISE så att det är output.
-volatile int* initTRISE = (volatile int*) 0xbf886100;
-*initTRISE = ~0xff;
+volatile int* trise = (volatile int*) 0xbf886100;
+*trise = ~0xff;
 // PORTE sätts till 0 vid initiering.
-*initPORTE = 0;
+*portE = 0;
 //Initiera TRISE så att det är input.
 TRISD = 0xfe0;
 
@@ -176,5 +175,5 @@ display_image(0, icon);
     }
 
 // Styr Led-lampor
-  *initPORTE += 1;
+  *portE += 1;
 }

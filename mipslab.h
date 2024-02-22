@@ -63,7 +63,7 @@ extern gameScore1;
 extern gameScore2;
 extern gameScore3;
 
-int InteruptFlag40ms;
+int interuptFlag25fps;
 
 /* Declare functions written by students.
    Note: Since we declare these functions here,
