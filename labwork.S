@@ -1,19 +1,15 @@
 # timetemplate.asm
   # Written 2015 by F Lundevall
   # Copyright abandonded - this file is in the public domain.
-
-.macro	PUSH (%reg)
+.macro	PUSH reg
 	addi	$sp,$sp,-4
-	sw	%reg,0($sp)
-.end_macro
+	sw	\reg,0($sp)
+.endm
 
-.macro	POP (%reg)
-	lw	%reg,0($sp)
+.macro	POP reg
+	lw	\reg,0($sp)
 	addi	$sp,$sp,4
-.end_macro
-
-	.data
-	.align 2
+.endm
 .global hexasc
 hexasc: 
 	andi $v0, $a3, 0xF

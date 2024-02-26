@@ -38,33 +38,12 @@ void display_debug( volatile int * const addr );
 /* Declare bitmap array containing font */
 extern const uint8_t const font[128*8];
 /* Declare bitmap array containing icon */
+//by Robert
 extern  uint8_t  icon[128*4];
-extern  uint8_t  tubes[5*60];
-extern int objectPosLevel1Reset[64*2];
-extern int objectPosLevel1[64*2];
 /* Declare text buffer for display output */
 extern char textbuffer[4][16];
-extern char s[4][20];
 
-extern gameState;
-extern countStart;
-
-
-int extern TacoX;       //Tacon som flyger
-int extern TacoY;
-
-int extern Tube1X;
-int extern Tube1Y;
-
-
-extern score;
-extern gameScore0;
-extern gameScore1;
-extern gameScore2;
-extern gameScore3;
-
-int interuptFlag25fps;
-
+int interupt;
 /* Declare functions written by students.
    Note: Since we declare these functions here,
    students must define their functions with the exact types
