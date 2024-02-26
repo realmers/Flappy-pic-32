@@ -126,12 +126,11 @@ void labwork(void)
 	// marking obstacles
 
 	// by Robert
-	mark_obs(obsx, obsy);
 
-	mark_obs1(obsx1, obsy1);
-
-	mark_obs2(obsx2, obsy2);
-	mark_obs3(obsx3, obsy3);
+	mark_obs(obsx1, obsy1, 10, 1);	// Upwards
+	mark_obs(obsx2, obsy2, 19, 1);	// Upwards
+	mark_obs(obsx3, obsy3, 18, -1); // Downwards
+	mark_obs(obsx, obsy, 14, -1);	// Downwards
 
 	// by Robert
 	mark_wall(wallx, wally);
