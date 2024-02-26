@@ -270,7 +270,7 @@ void labwork(void)
 	// }
 
 	int whileloop = 1;
-	if (referenceY >= 30 || referenceY <= 4 || ((referenceY - 1) >= obsy - 14 && (referenceX + 5) == obsx) ||
+	if (referenceY >= 30 || referenceY <= 0 || ((referenceY - 1) >= obsy - 14 && (referenceX + 5) == obsx) ||
 		(((referenceY - 1) <= (obsy1 + 10)) && ((referenceX + 5) == obsx1)) || (((referenceY - 1) <= obsy2 + 19) && ((referenceX + 5) == obsx2)) || (((referenceY - 1) >= (obsy3 - 18)) && ((referenceX + 5) == obsx3)))
 	{
 		// ifall vi har någon kollision in i loopen pga 1
