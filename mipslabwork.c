@@ -117,11 +117,12 @@ void labwork(void)
 	if (getbtns() != 2)
 	{
 		mark_square1(referenceX, referenceY);
-	}else
-	{
-		// legs move cat
-		mark_square2(referenceX, referenceY);
 	}
+	// else
+	// {
+	// 	// legs move cat
+	// 	mark_square2(referenceX, referenceY);
+	// }
 
 	// By Alexander
 	mark_obs(obsx1, obsy1, 10, 1);	// Upwards
