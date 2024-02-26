@@ -22,10 +22,8 @@
 
 // #define TMR2PERIOD ((80000000 / 256) / 10) //initialize tmr2period
 // by Sam
-int squareX = 15;
-int squareY = 10;
-// int squareXpixel = 23;
-// int squareYpixel = 4;
+int referenceX = 15;
+int referenceY = 10;
 
 int obsx = 128;
 int obsy = 31;
@@ -118,12 +116,12 @@ void labwork(void)
 	// standard cat
 	if (getbtns() != 2)
 	{
-		mark_square1(squareX, squareY);
+		mark_square1(referenceX, referenceY);
 	}
 	// legs move cat
 	if (getbtns() == 2)
 	{
-		mark_square2(squareX, squareY);
+		mark_square2(referenceX, referenceY);
 	}
 	// marking obstacles
 
@@ -147,11 +145,11 @@ void labwork(void)
 
 	// gravity
 	// by Robert
-	squareY = squareY + 1;
+	referenceY = referenceY + 1;
 
 	// delay annars går allt super snabbt
 	// by Robert
-	delay(30);
+	delay(30.2);
 
 	// obstacles rör sig till vänster hela tiden
 	// by Robert
@@ -183,19 +181,19 @@ void labwork(void)
 	}
 	// by Sam
 	// score
-	if (squareX == obsx)
+	if (referenceX == obsx)
 	{
 		*porte = *porte + 1;
 	}
-	if (squareX == obsx1)
+	if (referenceX == obsx1)
 	{
 		*porte = *porte + 1;
 	}
-	if (squareX == obsx2)
+	if (referenceX == obsx2)
 	{
 		*porte = *porte + 1;
 	}
-	if (squareX == obsx3)
+	if (referenceX == obsx3)
 	{
 		*porte = *porte + 1;
 	}
@@ -205,19 +203,19 @@ void labwork(void)
 	// btn3
 	if (getbtns() == 2)
 	{
-		squareY = squareY - 3;
+		referenceY = referenceY - 3;
 	}
 	// by Sam
 	// move forawrd btn2
 	if (getbtns() == 1)
 	{
-		squareX = squareX + 1;
+		referenceX = referenceX + 1;
 	}
 	// by Sam
 	// move backwards btn 4
 	if (getbtns() == 4)
 	{
-		squareX = squareX - 1;
+		referenceX = referenceX - 1;
 	}
 
 	// by Alexander
@@ -240,12 +238,12 @@ void labwork(void)
 
 	// int collisionDetected = 0; // Introduce a descriptive variable
 
-	// if (squareY >= 30 ||
-	// 	squareY <= 4 ||
-	// 	isCollisionWithObstacle(squareX, squareY, obsx, obsy) ||
-	// 	isCollisionWithObstacle(squareX, squareY, obsx1, obsy1) ||
-	// 	isCollisionWithObstacle(squareX, squareY, obsx2, obsy2) ||
-	// 	isCollisionWithObstacle(squareX, squareY, obsx3, obsy3))
+	// if (referenceY >= 30 ||
+	// 	referenceY <= 4 ||
+	// 	isCollisionWithObstacle(referenceX, referenceY, obsx, obsy) ||
+	// 	isCollisionWithObstacle(referenceX, referenceY, obsx1, obsy1) ||
+	// 	isCollisionWithObstacle(referenceX, referenceY, obsx2, obsy2) ||
+	// 	isCollisionWithObstacle(referenceX, referenceY, obsx3, obsy3))
 	// {
 	// 	collisionDetected = 1;
 	// }
@@ -261,8 +259,8 @@ void labwork(void)
 	// 		if (getbtns() == 4)
 	// 		{
 	// 			*porte = 0;
-	// 			squareY = 15;
-	// 			squareX = 10;
+	// 			referenceY = 15;
+	// 			referenceX = 10;
 	// 			obsx = 128;
 	// 			obsx1 = 180;
 	// 			obsx2 = 240;
@@ -273,8 +271,8 @@ void labwork(void)
 	// }
 
 	int whileloop = 1;
-	if (squareY >= 30 || squareY <= 4 || ((squareY - 1) >= obsy - 14 && (squareX + 8) == obsx) ||
-		(((squareY - 1) <= (obsy1 + 10)) && ((squareX + 8) == obsx1)) || (((squareY - 1) <= obsy2 + 19) && ((squareX + 8) == obsx2)) || (((squareY - 1) >= (obsy3 - 18)) && ((squareX + 8) == obsx3)))
+	if (referenceY >= 30 || referenceY <= 4 || ((referenceY - 1) >= obsy - 14 && (referenceX + 5) == obsx) ||
+		(((referenceY - 1) <= (obsy1 + 10)) && ((referenceX + 5) == obsx1)) || (((referenceY - 1) <= obsy2 + 19) && ((referenceX + 5) == obsx2)) || (((referenceY - 1) >= (obsy3 - 18)) && ((referenceX + 5) == obsx3)))
 	{
 		// ifall vi har någon kollision in i loopen pga 1
 		while (whileloop)
@@ -290,8 +288,8 @@ void labwork(void)
 				*porte = 0;
 
 				whileloop = 0;
-				squareY = 15;
-				squareX = 10;
+				referenceY = 15;
+				referenceX = 10;
 				obsx = 128;
 				obsx1 = 180;
 				obsx2 = 240;

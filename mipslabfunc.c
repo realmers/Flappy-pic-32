@@ -181,94 +181,35 @@ void drawPixel(int x, int y)
 
 int mark;
 // by sam
-void mark_square1(int squareX, int squareY)
+void mark_square1(int referenceX, int referenceY)
 {
-  drawPixel(squareX, squareY);
+  drawPixel(referenceX, referenceY);
 
 for(mark = 0; mark < 8; mark++){
-  drawPixel(squareX+mark,squareY);
-  drawPixel(squareX+mark,squareY+1);
-  drawPixel(squareX+mark,squareY+2);
-  drawPixel(squareX+mark,squareY+3);
-  drawPixel(squareX+mark,squareY+4);
+  drawPixel(referenceX+mark,referenceY);
+  drawPixel(referenceX+mark,referenceY+1);
+  drawPixel(referenceX+mark,referenceY+2);
+  drawPixel(referenceX+mark,referenceY+3);
+  drawPixel(referenceX+mark,referenceY+4);
 }
-//drawPixel(squareX+6,squareY-1);
-//drawPixel(squareX+7,squareY-1);
-//drawPixel(squareX+8,squareY-1);
 
-//head
-for(mark= 0; mark <5 ; mark++){
-  //drawPixel(squareX+5+mark,squareY-2);
-  //drawPixel(squareX+5+mark,squareY-3);
-  //drawPixel(squareX+5+mark,squareY-4);
-}
-//vänster öra
-//drawPixel(squareX+5,squareY-5);
-//drawPixel(squareX+5,squareY-6);
-//drawPixel(squareX+6,squareY-5);
-//
-//höger öra
-//drawPixel(squareX+9,squareY-6);
-//drawPixel(squareX+9,squareY-5);
-//drawPixel(squareX+8,squareY-5);
-//_______delar som ska röra på sig ________-
-//ben längst till höger
-
-
-//ben näst längst till höger
-
-
-//ben  till vänster
-
-
-//svans
 
 
 }
 
 // sam
-void mark_square2(int squareX, int squareY)
+void mark_square2(int referenceX, int referenceY)
 {
 
-  drawPixel(squareX, squareY);
+  drawPixel(referenceX, referenceY);
 
 for(mark = 0; mark < 8; mark++){
-  drawPixel(squareX+mark,squareY);
-  drawPixel(squareX+mark,squareY+1);
-  drawPixel(squareX+mark,squareY+2);
-  drawPixel(squareX+mark,squareY+3);
-  drawPixel(squareX+mark,squareY+4);
+  drawPixel(referenceX+mark,referenceY);
+  drawPixel(referenceX+mark,referenceY+1);
+  drawPixel(referenceX+mark,referenceY+2);
+  drawPixel(referenceX+mark,referenceY+3);
+  drawPixel(referenceX+mark,referenceY+4);
 }
-//drawPixel(squareX+6,squareY-1);
-//drawPixel(squareX+7,squareY-1);
-//drawPixel(squareX+8,squareY-1);
-//
-//for(mark= 0; mark <5 ; mark++){
-//  drawPixel(squareX+5+mark,squareY-2);
-//  drawPixel(squareX+5+mark,squareY-3);
-//  drawPixel(squareX+5+mark,squareY-4);
-//}
-////vänster öra
-//drawPixel(squareX+5,squareY-5);
-//drawPixel(squareX+5,squareY-6);
-//drawPixel(squareX+6,squareY-5);
-//
-////höger öra
-//drawPixel(squareX+9,squareY-6);
-//drawPixel(squareX+9,squareY-5);
-//drawPixel(squareX+8,squareY-5);
-//
-//_______delar som ska röra på sig ________-
-//ben längst till höger
-
-
-//ben näst längst till höger
-
-
-//ben  till vänster
-
-
-//svans
 
 
 }
