@@ -195,23 +195,23 @@ void mark_square1(int referenceX, int referenceY)
   }
 }
 
-// sam
-void mark_square2(int referenceX, int referenceY)
-{
+// // sam
+// void mark_square2(int referenceX, int referenceY)
+// {
 
-  drawPixel(referenceX, referenceY);
+//   drawPixel(referenceX, referenceY);
 
-  for (mark = 0; mark < 8; mark++)
-  {
-    drawPixel(referenceX + mark, referenceY);
-    drawPixel(referenceX + mark, referenceY + 1);
-    drawPixel(referenceX + mark, referenceY + 2);
-    drawPixel(referenceX + mark, referenceY + 3);
-    drawPixel(referenceX + mark, referenceY + 4);
-  }
-}
+//   for (mark = 0; mark < 8; mark++)
+//   {
+//     drawPixel(referenceX + mark, referenceY);
+//     drawPixel(referenceX + mark, referenceY + 1);
+//     drawPixel(referenceX + mark, referenceY + 2);
+//     drawPixel(referenceX + mark, referenceY + 3);
+//     drawPixel(referenceX + mark, referenceY + 4);
+//   }
+// }
 
-// by Alexander and Luis
+// By Alexander
 void mark_obs(int obsx, int obsy, int length, int direction) {
     int i;
 
@@ -223,38 +223,6 @@ void mark_obs(int obsx, int obsy, int length, int direction) {
     }
 }
 
-void mark_obs1(int obsx1, int obsy1)
-{
-  int i;
-  for (i = 0; i < 10; i++)
-  {
-    drawPixel(obsx1, obsy1 + i);
-    drawPixel(obsx1 - 1, obsy1 + i);
-    drawPixel(obsx1 - 2, obsy1 + i);
-  }
-}
-
-void mark_obs2(int obsx2, int obsy2)
-{
-  int i;
-  for (i = 0; i < 19; i++)
-  {
-    drawPixel(obsx2, obsy2 + i);
-    drawPixel(obsx2 - 1, obsy2 + i);
-    drawPixel(obsx2 - 2, obsy2 + i);
-  }
-}
-
-void mark_obs3(int obsx3, int obsy3)
-{
-  int i;
-  for (i = 0; i < 18; i++)
-  {
-    drawPixel(obsx3, obsy3 - i);
-    drawPixel(obsx3 - 1, obsy3 - i);
-    drawPixel(obsx3 - 2, obsy3 - i);
-  }
-}
 // by Robert
 void mark_wall(int wallx, int wally)
 {
