@@ -225,9 +225,9 @@ if(getbtns()==4){
 //hitboxen ligger på halsen längst fram, därför har vi squareY - 1 och squareX + 8
 
 int whileloop = 1;
-if(squareY >= 30 || squareY <= 4 || ( (squareY - 1) >= obsy-14 && (squareX+ 8) == obsx) || 
-(((squareY - 1) <= (obsy1 + 10)) && ((squareX + 8) == obsx1)) || (((squareY -1)<=obsy2 + 19) && ((squareX +8)== obsx2)) 
-  || (((squareY-1) >= (obsy3 -18)) &&  ((squareX + 8) == obsx3))){
+if(squareY >= 30 || squareY <= 4 || ( (squareY - 1) >= obsy-14 && (squareX+ 5) == obsx) || 
+(((squareY - 1) <= (obsy1 + 10)) && ((squareX + 5) == obsx1)) || (((squareY -1)<=obsy2 + 19) && ((squareX +5)== obsx2)) 
+  || (((squareY-1) >= (obsy3 -18)) &&  ((squareX + 5) == obsx3))){
 	  //ifall vi har någon kollision in i loopen pga 1
 while(whileloop){
 		display_string(1, gameover1);

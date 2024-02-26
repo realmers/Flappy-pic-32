@@ -172,48 +172,41 @@ drawPixel(squareX,squareY);
 for(mark = 0; mark < 8; mark++){
   drawPixel(squareX+mark,squareY);
   drawPixel(squareX+mark,squareY+1);
+  drawPixel(squareX+mark,squareY+2);
+  drawPixel(squareX+mark,squareY+3);
+  drawPixel(squareX+mark,squareY+4);
 }
-drawPixel(squareX+6,squareY-1);
-drawPixel(squareX+7,squareY-1);
-drawPixel(squareX+8,squareY-1);
+//drawPixel(squareX+6,squareY-1);
+//drawPixel(squareX+7,squareY-1);
+//drawPixel(squareX+8,squareY-1);
 
+//head
 for(mark= 0; mark <5 ; mark++){
-  drawPixel(squareX+5+mark,squareY-2);
-  drawPixel(squareX+5+mark,squareY-3);
-  drawPixel(squareX+5+mark,squareY-4);
+  //drawPixel(squareX+5+mark,squareY-2);
+  //drawPixel(squareX+5+mark,squareY-3);
+  //drawPixel(squareX+5+mark,squareY-4);
 }
 //vänster öra
-drawPixel(squareX+5,squareY-5);
-drawPixel(squareX+5,squareY-6);
-drawPixel(squareX+6,squareY-5);
-
+//drawPixel(squareX+5,squareY-5);
+//drawPixel(squareX+5,squareY-6);
+//drawPixel(squareX+6,squareY-5);
+//
 //höger öra
-drawPixel(squareX+9,squareY-6);
-drawPixel(squareX+9,squareY-5);
-drawPixel(squareX+8,squareY-5);
+//drawPixel(squareX+9,squareY-6);
+//drawPixel(squareX+9,squareY-5);
+//drawPixel(squareX+8,squareY-5);
 //_______delar som ska röra på sig ________-
 //ben längst till höger
-drawPixel(squareX+8,squareY+2);
-drawPixel(squareX+9,squareY+3);
-drawPixel(squareX+10,squareY+4);
+
 
 //ben näst längst till höger
-drawPixel(squareX+6,squareY+2);
-drawPixel(squareX+7,squareY+3);
-drawPixel(squareX+8,squareY+4);
+
 
 //ben  till vänster
-drawPixel(squareX,squareY+2);
-drawPixel(squareX-1,squareY+3);
-drawPixel(squareX-2,squareY+4);
+
 
 //svans
-drawPixel(squareX,squareY-1);
-drawPixel(squareX,squareY-2);
-drawPixel(squareX-1,squareY-2);
-drawPixel(squareX-1,squareY-3);
-drawPixel(squareX-2,squareY-3);
-drawPixel(squareX-2,squareY-4);
+
 
 }
 
@@ -225,49 +218,41 @@ drawPixel(squareX,squareY);
 for(mark = 0; mark < 8; mark++){
   drawPixel(squareX+mark,squareY);
   drawPixel(squareX+mark,squareY+1);
+  drawPixel(squareX+mark,squareY+2);
+  drawPixel(squareX+mark,squareY+3);
+  drawPixel(squareX+mark,squareY+4);
 }
-drawPixel(squareX+6,squareY-1);
-drawPixel(squareX+7,squareY-1);
-drawPixel(squareX+8,squareY-1);
-
-for(mark= 0; mark <5 ; mark++){
-  drawPixel(squareX+5+mark,squareY-2);
-  drawPixel(squareX+5+mark,squareY-3);
-  drawPixel(squareX+5+mark,squareY-4);
-}
-//vänster öra
-drawPixel(squareX+5,squareY-5);
-drawPixel(squareX+5,squareY-6);
-drawPixel(squareX+6,squareY-5);
-
-//höger öra
-drawPixel(squareX+9,squareY-6);
-drawPixel(squareX+9,squareY-5);
-drawPixel(squareX+8,squareY-5);
-
+//drawPixel(squareX+6,squareY-1);
+//drawPixel(squareX+7,squareY-1);
+//drawPixel(squareX+8,squareY-1);
+//
+//for(mark= 0; mark <5 ; mark++){
+//  drawPixel(squareX+5+mark,squareY-2);
+//  drawPixel(squareX+5+mark,squareY-3);
+//  drawPixel(squareX+5+mark,squareY-4);
+//}
+////vänster öra
+//drawPixel(squareX+5,squareY-5);
+//drawPixel(squareX+5,squareY-6);
+//drawPixel(squareX+6,squareY-5);
+//
+////höger öra
+//drawPixel(squareX+9,squareY-6);
+//drawPixel(squareX+9,squareY-5);
+//drawPixel(squareX+8,squareY-5);
+//
 //_______delar som ska röra på sig ________-
 //ben längst till höger
-drawPixel(squareX+8,squareY+2);
-drawPixel(squareX+7,squareY+3);
-drawPixel(squareX+6,squareY+4);
+
 
 //ben näst längst till höger
-drawPixel(squareX+6,squareY+2);
-drawPixel(squareX+5,squareY+3);
-drawPixel(squareX+4,squareY+4);
+
 
 //ben  till vänster
-drawPixel(squareX,squareY+2);
-drawPixel(squareX+1,squareY+3);
-drawPixel(squareX+2,squareY+4);
+
 
 //svans
-drawPixel(squareX,squareY-1);
-drawPixel(squareX,squareY-2);
-drawPixel(squareX+1,squareY-2);
-drawPixel(squareX+1,squareY-3);
-drawPixel(squareX+2,squareY-3);
-drawPixel(squareX+2,squareY-4);
+
 
 }
 
