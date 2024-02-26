@@ -211,16 +211,16 @@ void mark_square2(int referenceX, int referenceY)
   }
 }
 
-// obsticles by Robert
-void mark_obs(int obsx, int obsy)
-{
-  int i;
-  for (i = 0; i > -14; i--)
-  {
-    drawPixel(obsx, obsy + i);
-    drawPixel(obsx - 1, obsy + i);
-    drawPixel(obsx - 2, obsy + i);
-  }
+// by Alexander and Luis
+void mark_obs(int obsx, int obsy, int length, int direction) {
+    int i;
+
+    // direction: 1 for upwards, -1 for downwards 
+    for (i = 0; i < length; i++) {
+        drawPixel(obsx, obsy + i * direction);
+        drawPixel(obsx - 1, obsy + i * direction);
+        drawPixel(obsx - 2, obsy + i * direction);
+    }
 }
 
 void mark_obs1(int obsx1, int obsy1)
