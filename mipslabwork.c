@@ -220,35 +220,83 @@ void labwork(void)
 		squareX = squareX - 1;
 	}
 
-	// by Sam
-	// collisions, första är ifall den slår i taket elr markeb, resten är obs
-	// hitboxen ligger på halsen längst fram, därför har vi squareY - 1 och squareX + 8
-
-	int whileloop = 1;
-	if (squareY >= 30 || squareY <= 4 || ((squareY - 1) >= obsy - 14 && (squareX + 8) == obsx) ||
-		(((squareY - 1) <= (obsy1 + 10)) && ((squareX + 8) == obsx1)) || (((squareY - 1) <= obsy2 + 19) && ((squareX + 8) == obsx2)) || (((squareY - 1) >= (obsy3 - 18)) && ((squareX + 8) == obsx3)))
+	// by Alexander
+	// The code implements basic rectangular collision detection.
+	int isCollisionWithObstacle(int objX, int objY, int obstacleX, int obstacleY)
 	{
-		// ifall vi har någon kollision in i loopen pga 1
-		while (whileloop)
+		// Basic rectangular collision - Assume obj and obstacle have width/height
+		if (objX + objWidth < obstacleX ||
+			objX > obstacleX + obstacleWidth ||
+			objY + objHeight < obstacleY ||
+			objY > obstacleY + obstacleHeight)
+		{
+			return 0; // No collision
+		}
+		else
+		{
+			return 1; // Collision detected
+		}
+	}
+
+	int collisionDetected = 0; // Introduce a descriptive variable
+
+	if (squareY >= 30 ||
+		squareY <= 4 ||
+		isCollisionWithObstacle(squareX, squareY, obsx, obsy) ||
+		isCollisionWithObstacle(squareX, squareY, obsx1, obsy1) ||
+		isCollisionWithObstacle(squareX, squareY, obsx2, obsy2) ||
+		isCollisionWithObstacle(squareX, squareY, obsx3, obsy3))
+	{
+		collisionDetected = 1;
+	}
+
+	if (collisionDetected)
+	{
+		while (1) // More explicit infinite loop
 		{
 			display_string(1, gameover1);
 			display_string(2, gameover2);
-			// display update, annars kommer inte att displayed uppdateras och vi ser all text
 			display_update();
-			// reseta allt till deras originella positioner, och ut ur loop
-			//  btn 4
+
 			if (getbtns() == 4)
 			{
 				*porte = 0;
-
-				whileloop = 0;
 				squareY = 15;
 				squareX = 10;
 				obsx = 128;
 				obsx1 = 180;
 				obsx2 = 240;
 				obsx3 = 300;
+				break; // Exit the game loop
 			}
 		}
 	}
+
+	// int whileloop = 1;
+	// if (squareY >= 30 || squareY <= 4 || ((squareY - 1) >= obsy - 14 && (squareX + 8) == obsx) ||
+	// 	(((squareY - 1) <= (obsy1 + 10)) && ((squareX + 8) == obsx1)) || (((squareY - 1) <= obsy2 + 19) && ((squareX + 8) == obsx2)) || (((squareY - 1) >= (obsy3 - 18)) && ((squareX + 8) == obsx3)))
+	// {
+	// 	// ifall vi har någon kollision in i loopen pga 1
+	// 	while (whileloop)
+	// 	{
+	// 		display_string(1, gameover1);
+	// 		display_string(2, gameover2);
+	// 		// display update, annars kommer inte att displayed uppdateras och vi ser all text
+	// 		display_update();
+	// 		// reseta allt till deras originella positioner, och ut ur loop
+	// 		//  btn 4
+	// 		if (getbtns() == 4)
+	// 		{
+	// 			*porte = 0;
+
+	// 			whileloop = 0;
+	// 			squareY = 15;
+	// 			squareX = 10;
+	// 			obsx = 128;
+	// 			obsx1 = 180;
+	// 			obsx2 = 240;
+	// 			obsx3 = 300;
+	// 		}
+	// 	}
+	// }
 }
