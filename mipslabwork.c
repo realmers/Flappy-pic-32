@@ -112,8 +112,8 @@ void labwork(void)
 	display_string(0, "");
 	display_string(3, "");
 
-	// by Sam
-	// standard cat
+	// TODO lägg till ghost mode/hard mode ifall man pressar en knapp i start screen
+
 	mark_square1(referenceX, referenceY);
 	// if (getbtns() != 2)
 	// {
