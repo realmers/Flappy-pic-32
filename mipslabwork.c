@@ -114,10 +114,11 @@ void labwork(void)
 
 	// by Sam
 	// standard cat
-	if (getbtns() != 2)
-	{
-		mark_square1(referenceX, referenceY);
-	}
+	mark_square1(referenceX, referenceY);
+	// if (getbtns() != 2)
+	// {
+		// mark_square1(referenceX, referenceY);
+	// }
 	// else
 	// {
 	// 	// legs move cat
