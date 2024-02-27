@@ -13,12 +13,10 @@
 #include <stdint.h>	 /* Declarations of uint_32 and the like */
 #include <pic32mx.h> /* Declarations of system-specific addresses etc */
 #include "mipslab.h" /* Declatations for these labs */
-// basically FPS, med 10 blir det trögt så vi kör 300
-// by Sam
-#define TMR2PERIOD ((80000000 / 256) / 300) /* 100ms */
-#if TMR2PERIOD > 0xffff
-#error "TimerPeriodIsTooBig"
-#endif
+
+//By Luis, 1000/30
+#define TMR2PERIOD ((80000000 / 256) / 30) /*30fps => 33,333ms*/
+
 
 // #define TMR2PERIOD ((80000000 / 256) / 10) //initialize tmr2period
 // by Sam
@@ -147,7 +145,7 @@ void labwork(void)
 
 	// delay annars går allt super snabbt
 	// by Robert
-	delay(30.2);
+	// delay(30.2);
 
 	// obstacles rör sig till vänster hela tiden
 	// by Robert
