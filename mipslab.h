@@ -44,9 +44,8 @@ int interruptBool;
    Note: Since we declare these functions here,
    students must define their functions with the exact types
    specified in the laboratory instructions. */
-/* Written as part of asm lab: delay, time2string */
+/* Written as part of asm lab: delay, */
 void delay(int);
-void time2string( char *, int );
 /* Written as part of i/o lab: getbtns, getsw, enable_interrupt */
 int getbtns(void);
 int getsw(void);
