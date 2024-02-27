@@ -69,7 +69,6 @@ int main(void) {
 	{
 		if(interupt == 1){
 	  labwork(); /* Do lab-specific things again and again */
-	  //mark_square(15, 5);
 	  interupt = 0;
 		}
 	}

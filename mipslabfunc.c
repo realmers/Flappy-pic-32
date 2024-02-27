@@ -147,43 +147,25 @@ void DrawDot(int x, int y)
   icon[x] = icon[x] & inverted;
 }
 
-int mark;
-// by sam
-void mark_square1(int referenceX, int referenceY)
+int markReference;
+// by Luis
+void DrawBoxCharacter(int referenceX, int referenceY)
 {
   DrawDot(referenceX, referenceY);
 
-  for (mark = 0; mark < 8; mark++)
+  for (markReference = 0; markReference < 8; markReference++)
   {
-    DrawDot(referenceX + mark, referenceY);
-    DrawDot(referenceX + mark, referenceY + 1);
-    DrawDot(referenceX + mark, referenceY + 2);
-    DrawDot(referenceX + mark, referenceY + 3);
-    DrawDot(referenceX + mark, referenceY + 4);
+    DrawDot(referenceX + markReference, referenceY);
+    DrawDot(referenceX + markReference, referenceY + 1);
+    DrawDot(referenceX + markReference, referenceY + 2);
+    DrawDot(referenceX + markReference, referenceY + 3);
+    DrawDot(referenceX + markReference, referenceY + 4);
   }
 }
 
-// // sam
-// void mark_square2(int referenceX, int referenceY)
-// {
-
-//   drawPixel(referenceX, referenceY);
-
-//   for (mark = 0; mark < 8; mark++)
-//   {
-//     drawPixel(referenceX + mark, referenceY);
-//     drawPixel(referenceX + mark, referenceY + 1);
-//     drawPixel(referenceX + mark, referenceY + 2);
-//     drawPixel(referenceX + mark, referenceY + 3);
-//     drawPixel(referenceX + mark, referenceY + 4);
-//   }
-// }
-
 // By Alexander
-void mark_obs(int obsx, int obsy, int length, int direction) {
-    int i;
-
-    // direction: 1 for upwards, -1 for downwards 
+void MarkObstacles(int obsx, int obsy, int length, int direction) {
+  int i;
     for (i = 0; i < length; i++) {
         DrawDot(obsx, obsy + i * direction);
         DrawDot(obsx - 1, obsy + i * direction);
@@ -191,8 +173,8 @@ void mark_obs(int obsx, int obsy, int length, int direction) {
     }
 }
 
-// by Robert
-void mark_wall(int wallx, int wally)
+// by Alexander
+void DrawCeilingAndFloor(int wallx, int wally)
 {
   int i;
   for (i = 0; i < 128; i++)
@@ -269,14 +251,11 @@ void display_update(void)
 }
 int i = 0;
 
-// reset screen
-// by Robert
-void resetscreen()
+// by Luis
+void MakeScreenBlack()
 {
-
   for (i = 0; i < 512; i++)
   {
-
     icon[i] = 255;
   }
 }
@@ -290,57 +269,6 @@ static void num32asc(char *s, int n)
     *s++ = "0123456789ABCDEF"[(n >> i) & 15];
 }
 
-/*
- * nextprime
- *
- * Return the first prime number larger than the integer
- * given as a parameter. The integer must be positive.
- */
-#define PRIME_FALSE 0 /* Constant to help readability. */
-#define PRIME_TRUE 1  /* Constant to help readability. */
-int nextprime(int inval)
-{
-  register int perhapsprime = 0; /* Holds a tentative prime while we check it. */
-  register int testfactor;       /* Holds various factors for which we test perhapsprime. */
-  register int found;            /* Flag, false until we find a prime. */
-
-  if (inval < 3) /* Initial sanity check of parameter. */
-  {
-    if (inval <= 0)
-      return (1); /* Return 1 for zero or negative input. */
-    if (inval == 1)
-      return (2); /* Easy special case. */
-    if (inval == 2)
-      return (3); /* Easy special case. */
-  }
-  else
-  {
-    /* Testing an even number for primeness is pointless, since
-     * all even numbers are divisible by 2. Therefore, we make sure
-     * that perhapsprime is larger than the parameter, and odd. */
-    perhapsprime = (inval + 1) | 1;
-  }
-  /* While prime not found, loop. */
-  for (found = PRIME_FALSE; found != PRIME_TRUE; perhapsprime += 2)
-  {
-    /* Check factors from 3 up to perhapsprime/2. */
-    for (testfactor = 3; testfactor <= (perhapsprime >> 1) + 1; testfactor += 1)
-    {
-      found = PRIME_TRUE;                   /* Assume we will find a prime. */
-      if ((perhapsprime % testfactor) == 0) /* If testfactor divides perhapsprime... */
-      {
-        found = PRIME_FALSE;   /* ...then, perhapsprime was non-prime. */
-        goto check_next_prime; /* Break the inner loop, go test a new perhapsprime. */
-      }
-    }
-  check_next_prime:;         /* This label is used to break the inner loop. */
-    if (found == PRIME_TRUE) /* If the loop ended normally, we found a prime. */
-    {
-      return (perhapsprime); /* Return the prime we found. */
-    }
-  }
-  return (perhapsprime); /* When the loop ends, perhapsprime is a real prime. */
-}
 
 /*
  * itoa

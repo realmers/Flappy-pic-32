@@ -33,20 +33,13 @@ int obsy2 = 0;
 
 int obsx3 = 300;
 int obsy3 = 31;
-
+// by Robert
 int wallx = 0;
 int wally = 0;
-
+// by Sam
 int start = 1;
 
-int prime = 1234567;
-int mytime = 0x5957;
 int timecount = 0;
-
-char starttext[] = "flappycat ";
-char starttext1[] = "BTN4 to start";
-char starttext2[] = "BTN3 to jump ";
-char starttext3[] = "BTN2--> BTN4<-- ";
 
 char gameover1[] = "Game over, klick ";
 char gameover2[] = "BTN4 to restart";
@@ -91,10 +84,9 @@ void labwork(void)
 	while (start)
 	{
 
-		display_string(0, starttext);
-		display_string(1, starttext1);
-		display_string(2, starttext2);
-		display_string(3, starttext3);
+		display_string(0, "Flappy square");
+		display_string(2, "BTN4 to start");
+		display_string(3, "BTN3 to jump ");
 
 		display_update();
 
@@ -103,38 +95,27 @@ void labwork(void)
 			start = 0;
 		}
 	}
-	// by Robert
 	display_string(0, "");
-	display_string(3, "");
 
 	// TODO lägg till ghost mode/hard mode ifall man pressar en knapp i start screen
 
-	mark_square1(referenceX, referenceY);
-	// if (getbtns() != 2)
-	// {
-		// mark_square1(referenceX, referenceY);
-	// }
-	// else
-	// {
-	// 	// legs move cat
-	// 	mark_square2(referenceX, referenceY);
-	// }
+	DrawBoxCharacter(referenceX, referenceY);
 
 	// By Alexander
-	mark_obs(obsx1, obsy1, 10, 1);	// Upwards
-	mark_obs(obsx2, obsy2, 19, 1);	// Upwards
-	mark_obs(obsx3, obsy3, 18, -1); // Downwards
-	mark_obs(obsx, obsy, 14, -1);	// Downwards
+	MarkObstacles(obsx1, obsy1, 10, 1);	// Upwards
+	MarkObstacles(obsx2, obsy2, 19, 1);	// Upwards
+	MarkObstacles(obsx3, obsy3, 18, -1); // Downwards
+	MarkObstacles(obsx, obsy, 14, -1);	// Downwards
 
 	// by Robert
-	mark_wall(wallx, wally);
+	DrawCeilingAndFloor(wallx, wally);
 
 	// sättr allt på standard plats
 	// by Robert
 	display_image(0, icon);
 	// display_update();
 	// by Sam
-	resetscreen();
+	MakeScreenBlack();
 
 	// gravity
 	// by Robert
@@ -280,6 +261,7 @@ void labwork(void)
 			//  btn 4
 			if (getbtns() == 4)
 			{
+				delayValue = 80;
 				*porte = 0;
 
 				whileloop = 0;
