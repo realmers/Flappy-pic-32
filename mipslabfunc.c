@@ -271,7 +271,7 @@ int i = 0;
 
 // reset screen
 // by Robert
-void resetscreen(void)
+void resetscreen()
 {
 
   for (i = 0; i < 512; i++)
