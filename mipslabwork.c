@@ -8,7 +8,7 @@ float delayValue = 80;
 int referenceX = 15;
 int referenceY = 10;
 int obstaclesX[] = {128, 180, 240, 300};
-int obsy[] = {31, 0, 0, 31};
+int obstacleY[] = {31, 0, 0, 31};
 int ceiling = 0;
 int floor = 0;
 int gameStateBool = 1;
@@ -35,10 +35,10 @@ void labinit(void)
 }
 // by Alexander
 int checkCollision() {
-    	if (((referenceY - 1) >= obsy[0] - 14 && (referenceX + 5) == obstaclesX[0]) ||
-            (((referenceY - 1) <= (obsy[1] + 10)) && ((referenceX + 5) == obstaclesX[1])) ||
-            (((referenceY - 1) <= obsy[2] + 19) && ((referenceX + 5) == obstaclesX[2])) ||
-            (((referenceY - 1) >= (obsy[3] - 18)) && ((referenceX + 5) == obstaclesX[3]))) {
+    	if (((referenceY - 1) >= obstacleY[0] - 18 && (referenceX + 5) == obstaclesX[0]) ||
+            (((referenceY - 1) <= (obstacleY[1] + 12)) && ((referenceX + 5) == obstaclesX[1])) ||
+            (((referenceY - 1) <= obstacleY[2] + 20) && ((referenceX + 5) == obstaclesX[2])) ||
+            (((referenceY - 1) >= (obstacleY[3] - 16)) && ((referenceX + 5) == obstaclesX[3]))) {
             return 1;
         }
     
@@ -50,10 +50,10 @@ void restartGame() {
     *portE = 0;
     referenceY = 15;
     referenceX = 10;
-    obstaclesX[0] = 128;
-    obstaclesX[1] = 180;
-    obstaclesX[2] = 240;
-    obstaclesX[3] = 300;
+    obstaclesX[0] = 100;
+    obstaclesX[1] = 140;
+    obstaclesX[2] = 200;
+    obstaclesX[3] = 250;
 }
 
 void labwork(void)
@@ -72,10 +72,12 @@ void labwork(void)
 	// by Alexander
     display_string(0, "");
     DrawBoxCharacter(referenceX, referenceY);
-    MarkObstacles(obstaclesX[0], obsy[0], 14, -1);  // Downwards
-    MarkObstacles(obstaclesX[1], obsy[1], 10, 1);   // Upwards
-    MarkObstacles(obstaclesX[2], obsy[2], 19, 1);   // Upwards
-    MarkObstacles(obstaclesX[3], obsy[3], 18, -1); // Downwards
+
+    MarkObstacles(obstaclesX[0], obstacleY[0], 18, -1);  // Downwards
+    MarkObstacles(obstaclesX[1], obstacleY[1], 12, 1);   // Upwards
+    MarkObstacles(obstaclesX[2], obstacleY[2], 20, 1);   // Upwards
+    MarkObstacles(obstaclesX[3], obstacleY[3], 16, -1); // Downwards
+
     DrawCeilingAndFloor(ceiling, floor);
     display_image(0, icon);
     MakeScreenBlack();

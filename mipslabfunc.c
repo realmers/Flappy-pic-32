@@ -170,6 +170,8 @@ void MarkObstacles(int obstacleX, int obstacleY, int length, int direction) {
         DrawDot(obstacleX, obstacleY + i * direction);
         DrawDot(obstacleX - 1, obstacleY + i * direction);
         DrawDot(obstacleX - 2, obstacleY + i * direction);
+        DrawDot(obstacleX - 3, obstacleY + i * direction);
+        DrawDot(obstacleX - 4, obstacleY + i * direction);
     }
 }
 
