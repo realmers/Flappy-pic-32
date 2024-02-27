@@ -150,33 +150,43 @@ void labwork(void)
 		referenceY = referenceY - 3;
 	}
 
-	int whileloop = 1;
-	if (referenceY >= 30 || referenceY <= 0 || ((referenceY - 1) >= obsy[0] - 14 && (referenceX + 5) == obstaclesX[0]) ||
-		(((referenceY - 1) <= (obsy[1] + 10)) && ((referenceX + 5) == obstaclesX[1])) || (((referenceY - 1) <= obsy[2] + 19) && ((referenceX + 5) == obstaclesX[2])) || (((referenceY - 1) >= (obsy[3] - 18)) && ((referenceX + 5) == obstaclesX[3])))
-	{
-		// ifall vi har någon kollision in i loopen pga 1
+	int isCollisionDetected(int referenceY, int referenceX, int* obsy, int* obstaclesX) {
+		return referenceY >= 30 || referenceY <= 0 || 
+			   ((referenceY - 1) >= obsy[0] - 14 && (referenceX + 5) == obstaclesX[0]) ||
+			   (((referenceY - 1) <= (obsy[1] + 10)) && ((referenceX + 5) == obstaclesX[1])) || 
+			   (((referenceY - 1) <= obsy[2] + 19) && ((referenceX + 5) == obstaclesX[2])) || 
+			   (((referenceY - 1) >= (obsy[3] - 18)) && ((referenceX + 5) == obstaclesX[3]));
+	}
+
+	void resetGame(int* delayValue, int* portE, int* referenceY, int* referenceX, int* obstaclesX) {
+		*delayValue = 80;
+		*portE = 0;
+		*referenceY = 15;
+		*referenceX = 10;
+		obstaclesX[0] = 128;
+		obstaclesX[1] = 180;
+		obstaclesX[2] = 240;
+		obstaclesX[3] = 300;
+	}
+
+	void handleGameOver(int* delayValue, int* portE, int* referenceY, int* referenceX, int* obstaclesX) {
+		int whileloop = 1;
 		while (whileloop)
 		{
 			display_string(0, "Game over");
 			display_string(2, "BTN4 to restart");
 			display_string(1, "");
-			// display update, annars kommer inte att displayed uppdateras och vi ser all text
 			display_update();
-			// reseta allt till deras originella positioner, och ut ur loop
-			//  btn 4
 			if (getbtns() == 4)
 			{
-				delayValue = 80;
-				*portE = 0;
-
+				resetGame(delayValue, portE, referenceY, referenceX, obstaclesX);
 				whileloop = 0;
-				referenceY = 15;
-				referenceX = 10;
-				obstaclesX[0] = 128;
-				obstaclesX[1] = 180;
-				obstaclesX[2] = 240;
-				obstaclesX[3] = 300;
 			}
 		}
+	}
+
+	// In your main function or wherever you're checking for collisions
+	if (isCollisionDetected(referenceY, referenceX, obsy, obstaclesX)) {
+		handleGameOver(&delayValue, portE, &referenceY, &referenceX, obstaclesX);
 	}
 }
