@@ -130,53 +130,21 @@ void display_init(void)
 // by Robert
 void drawPixel(int x, int y)
 {
-
-  // check if out of bounds
-  // set y to -10 which will be handled
-  // in the if loops later
-  if ((y < 0 | x < 0 | x > 127 | y > 32))
+  // Check if out of bounds
+  if (y < 0 || x < 0 || x > 127 || y > 32)
   {
-
-    y = -10;
-  }
-  // check if in second segment
-  // make x to second segment by adding 128
-  if (y >= 8 && y < 16)
-  {
-    x = x + 128;
-    y = y - 8;
+    return; // Exit the function if out of bounds
   }
 
-  // check if in third segment of display
-  // make x in to third segment by adding 256
-  // also make y in to first segment by subtracting 16
-  if (y >= 16 && y < 24)
-  {
-    x = x + 256;
-    y = y - 16;
-  }
+  // Calculate segment offsets
+  int segment = y / 8;
+  x += 128 * segment;
+  y -= 8 * segment;
 
-  // check if in fourth segment
-  // make x in to fourth segment by adding 384
-  // also make y in to first segment by subtracting 24
-  if (y >= 24 && y < 32)
-  {
-    x = x + 384;
-    y = y - 24;
-  }
-
-  // check if on screen
-  // shift to y position
-  // and with inverted
-  // to turn on pixel
-  if (y != -10)
-  {
-    int p = 1;
-    p = p << y;
-
-    int inverted = ~p;
-    icon[x] = icon[x] & inverted;
-  }
+  // Check if on screen and turn on pixel
+  int p = 1 << y;
+  int inverted = ~p;
+  icon[x] = icon[x] & inverted;
 }
 
 int mark;
