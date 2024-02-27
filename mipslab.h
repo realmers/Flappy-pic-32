@@ -42,7 +42,7 @@ extern  uint8_t  icon[128*4];
 /* Declare text buffer for display output */
 extern char textbuffer[4][16];
 
-int interupt;
+int interruptBool;
 /* Declare functions written by students.
    Note: Since we declare these functions here,
    students must define their functions with the exact types

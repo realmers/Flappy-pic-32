@@ -22,6 +22,9 @@ float delayValue = 80;
 int referenceX = 15;
 int referenceY = 10;
 
+int[] obsx = {128, 180, 240, 300};
+int[] obsy = {31, 0, 0, 31};
+
 int obsx = 128;
 int obsy = 31;
 
@@ -49,9 +52,9 @@ volatile int *porte = (volatile int *)0xbf886110;
 
 void user_isr(void)
 {
-	// när interupt kör den user
+	// när interruptBool kör den user
 	IFSCLR(0) = 0x100;
-	interupt = 1;
+	interruptBool = 1;
 }
 
 /* Lab-specific initialization goes here */
