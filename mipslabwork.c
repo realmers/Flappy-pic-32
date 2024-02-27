@@ -33,16 +33,16 @@ int obsy2 = 0;
 
 int obsx3 = 300;
 int obsy3 = 31;
-// by Robert
+
 int wallx = 0;
 int wally = 0;
-// by Sam
+
 int start = 1;
 
 int prime = 1234567;
 int mytime = 0x5957;
 int timecount = 0;
-// by Sam
+
 char starttext[] = "flappycat ";
 char starttext1[] = "BTN4 to start";
 char starttext2[] = "BTN3 to jump ";
