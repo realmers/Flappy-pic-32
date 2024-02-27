@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <pic32mx.h>
 #include "mipslab.h"
-
+// by Luis
 #define TMR2PERIOD ((80000000 / 256) / 45) /*45fps => 22,222...ms*/
 
 float delayValue = 80;
@@ -33,7 +33,7 @@ void labinit(void)
     enable_interrupt();
     return;
 }
-
+// by Alexander
 int checkCollision() {
     	if (((referenceY - 1) >= obsy[0] - 14 && (referenceX + 5) == obstaclesX[0]) ||
             (((referenceY - 1) <= (obsy[1] + 10)) && ((referenceX + 5) == obstaclesX[1])) ||
@@ -69,6 +69,7 @@ void labwork(void)
             gameStateBool = 0;
         }
     }
+	// by Alexander
     display_string(0, "");
     DrawBoxCharacter(referenceX, referenceY);
     MarkObstacles(obstaclesX[0], obsy[0], 14, -1);  // Downwards
@@ -78,17 +79,22 @@ void labwork(void)
     DrawCeilingAndFloor(ceiling, floor);
     display_image(0, icon);
     MakeScreenBlack();
+	
     referenceY = referenceY + 1;
+
     delay(delayValue);
     delayValue -= 0.1;
+
     obstaclesX[0] = obstaclesX[0] - 1;
     obstaclesX[1] = obstaclesX[1] - 1;
     obstaclesX[2] = obstaclesX[2] - 1;
     obstaclesX[3] = obstaclesX[3] - 1;
+
     if (obstaclesX[0] <= -128) obstaclesX[0] = 128;
     if (obstaclesX[1] <= -128) obstaclesX[1] = 128;
     if (obstaclesX[2] <= -128) obstaclesX[2] = 128;
     if (obstaclesX[3] <= -128) obstaclesX[3] = 128;
+
     if (referenceX == obstaclesX[0] || referenceX == obstaclesX[1] ||
         referenceX == obstaclesX[2] || referenceX == obstaclesX[3]) {
         *portE += 1;
