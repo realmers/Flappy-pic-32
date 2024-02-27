@@ -34,15 +34,12 @@ void tick( unsigned int * timep );
 */
 void display_debug( volatile int * const addr );
 
-/* Declare bitmap array containing font */
-extern const uint8_t const font[128*8];
-/* Declare bitmap array containing icon */
-//by Robert
-extern  uint8_t  icon[128*4];
-/* Declare text buffer for display output */
+
+extern const uint8_t const font[1024];
+extern  uint8_t  icon[512];
 extern char textbuffer[4][16];
 
-int interruptBool;
+int interruptBool;   
 /* Declare functions written by students.
    Note: Since we declare these functions here,
    students must define their functions with the exact types

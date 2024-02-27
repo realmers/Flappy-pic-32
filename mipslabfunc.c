@@ -159,7 +159,6 @@ void DrawBoxCharacter(int referenceX, int referenceY)
     DrawDot(referenceX + markReference, referenceY + 1);
     DrawDot(referenceX + markReference, referenceY + 2);
     DrawDot(referenceX + markReference, referenceY + 3);
-    DrawDot(referenceX + markReference, referenceY + 4);
   }
 }
 

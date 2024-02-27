@@ -7,7 +7,7 @@
 float delayValue = 80;
 int referenceX = 15;
 int referenceY = 10;
-int obstaclesX[] = {128, 180, 240, 300};
+int obstaclesX[] = {100, 140, 200, 250};
 int obstacleY[] = {31, 0, 0, 31};
 int ceiling = 0;
 int floor = 0;
@@ -60,9 +60,10 @@ void labwork(void)
 {
     while (gameStateBool)
     {
-        display_string(0, "Flappy square");
-        display_string(2, "BTN4 to gameStateBool");
-        display_string(3, "BTN3 to jump ");
+        display_string(0, "FLAPPY SQUARE");
+        display_string(2, "BTN4 TO START");
+        display_string(3, "BTN3 TO JUMP");
+
         display_update();
         if (getbtns() == 4)
         {
@@ -81,7 +82,7 @@ void labwork(void)
     DrawCeilingAndFloor(ceiling, floor);
     display_image(0, icon);
     MakeScreenBlack();
-	
+
     referenceY = referenceY + 1;
 
     delay(delayValue);
@@ -106,8 +107,9 @@ void labwork(void)
     }
     if (referenceY >= 30 || referenceY <= 0 || checkCollision()) {
         while (1) {
-            display_string(0, "Game over");
-            display_string(2, "BTN4 to restart");
+            display_string(0, "GAME OVER");
+			display_string(2, "BTN3 TO JUMP");
+            display_string(3, "BTN4 TO RESTART");
             display_string(1, "");
             display_update();
             if (getbtns() == 4) {
