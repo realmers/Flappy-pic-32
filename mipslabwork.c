@@ -22,37 +22,18 @@ float delayValue = 80;
 int referenceX = 15;
 int referenceY = 10;
 
-int[] obsx = {128, 180, 240, 300};
-int[] obsy = {31, 0, 0, 31};
+int obstaclesX[] = {128, 180, 240, 300};
+int obsy[] = {31, 0, 0, 31};
 
-int obsx = 128;
-int obsy = 31;
+int ceiling = 0;
+int floor = 0;
+// by Luis
+int gameStateBool = 1;
 
-int obsx1 = 180;
-int obsy1 = 0;
-
-int obsx2 = 240;
-int obsy2 = 0;
-
-int obsx3 = 300;
-int obsy3 = 31;
-// by Robert
-int wallx = 0;
-int wally = 0;
-// by Sam
-int start = 1;
-
-int timecount = 0;
-
-char gameover1[] = "Game over, klick ";
-char gameover2[] = "BTN4 to restart";
-
-volatile int *porte = (volatile int *)0xbf886110;
-
+volatile int *portE = (volatile int *)0xbf886110;
 
 void user_isr(void)
 {
-	// när interruptBool kör den user
 	IFSCLR(0) = 0x100;
 	interruptBool = 1;
 }
@@ -60,19 +41,19 @@ void user_isr(void)
 /* Lab-specific initialization goes here */
 void labinit(void)
 {
-	volatile int *trise = (volatile int *)0xbf886100;
+	volatile int *trisE = (volatile int *)0xbf886100;
 
-	*trise = *trise & 0xFF00;
+	*trisE = *trisE & 0xFF00;
 
 	TRISD = TRISD & 0x0fe0;
 
 	PR2 = TMR2PERIOD;
-	TMR2 = 0;		   // kan lägga till vad som, börjar på 0
-	T2CONSET = 0X8070; // 8 är bit för att starta, 70 är för att prescalingen
+	TMR2 = 0;		   
+	T2CONSET = 0X8070; 
 
-	IEC(0) = 0x100; // set enable
+	IEC(0) = 0x100; 
 
-	IPC(2) = 0x1f; // set prioritty
+	IPC(2) = 0x1f; 
 
 	enable_interrupt();
 	return;
@@ -82,46 +63,38 @@ void labinit(void)
 void labwork(void)
 {
 
-	// by Sam
-	// start screen
-	while (start)
+	while (gameStateBool)
 	{
 
 		display_string(0, "Flappy square");
-		display_string(2, "BTN4 to start");
+		display_string(2, "BTN4 to gameStateBool");
 		display_string(3, "BTN3 to jump ");
 
 		display_update();
 
 		if (getbtns() == 4)
 		{
-			start = 0;
+			gameStateBool = 0;
 		}
 	}
 	display_string(0, "");
 
-	// TODO lägg till ghost mode/hard mode ifall man pressar en knapp i start screen
+	// TODO lägg till ghost mode/hard mode ifall man pressar en knapp i gameStateBool screen
 
 	DrawBoxCharacter(referenceX, referenceY);
 
 	// By Alexander
-	MarkObstacles(obsx1, obsy1, 10, 1);	// Upwards
-	MarkObstacles(obsx2, obsy2, 19, 1);	// Upwards
-	MarkObstacles(obsx3, obsy3, 18, -1); // Downwards
-	MarkObstacles(obsx, obsy, 14, -1);	// Downwards
+	MarkObstacles(obstaclesX[0], obsy[0], 14, -1);	// Downwards
+	MarkObstacles(obstaclesX[1], obsy[1], 10, 1);	// Upwards
+	MarkObstacles(obstaclesX[2], obsy[2], 19, 1);	// Upwards
+	MarkObstacles(obstaclesX[3], obsy[3], 18, -1); // Downwards
 
-	// by Robert
-	DrawCeilingAndFloor(wallx, wally);
-
-	// sättr allt på standard plats
-	// by Robert
+	DrawCeilingAndFloor(ceiling, floor);
+	
 	display_image(0, icon);
-	// display_update();
-	// by Sam
+	
 	MakeScreenBlack();
 
-	// gravity
-	// by Robert
 	referenceY = referenceY + 1;
 
 	// by Luis
@@ -129,135 +102,64 @@ void labwork(void)
 	delay(delayValue);
 	delayValue -= 0.1;
 
+	obstaclesX[0] = obstaclesX[0] - 1;
+	obstaclesX[1] = obstaclesX[1] - 1;
+	obstaclesX[2] = obstaclesX[2] - 1;
+	obstaclesX[3] = obstaclesX[3] - 1;
 
-	// obstacles rör sig till vänster hela tiden
-	// by Robert
-	obsx = obsx - 1;
-	obsx1 = obsx1 - 1;
-	obsx2 = obsx2 - 1;
-	obsx3 = obsx3 - 1;
-
-	// Resets
-	// by Sam
-	if (obsx <= -128)
+	if (obstaclesX[0] <= -128)
 	{
-		obsx = 128;
+		obstaclesX[0] = 128;
 	}
 
-	if (obsx1 <= -128)
+	if (obstaclesX[1] <= -128)
 	{
-		obsx1 = 128;
+		obstaclesX[1] = 128;
 	}
 
-	if (obsx2 <= -128)
+	if (obstaclesX[2] <= -128)
 	{
-		obsx2 = 128;
+		obstaclesX[2] = 128;
 	}
 
-	if (obsx3 <= -128)
+	if (obstaclesX[3] <= -128)
 	{
-		obsx3 = 128;
+		obstaclesX[3] = 128;
 	}
-	// by Sam
-	// score
-	if (referenceX == obsx)
+	
+
+	if (referenceX == obstaclesX[0])
 	{
-		*porte = *porte + 1;
+		*portE = *portE + 1;
 	}
-	if (referenceX == obsx1)
+	if (referenceX == obstaclesX[1])
 	{
-		*porte = *porte + 1;
+		*portE = *portE + 1;
 	}
-	if (referenceX == obsx2)
+	if (referenceX == obstaclesX[2])
 	{
-		*porte = *porte + 1;
+		*portE = *portE + 1;
 	}
-	if (referenceX == obsx3)
+	if (referenceX == obstaclesX[3])
 	{
-		*porte = *porte + 1;
+		*portE = *portE + 1;
 	}
 
-	// jump
-	// by Robert
-	// btn3
 	if (getbtns() == 2)
 	{
 		referenceY = referenceY - 3;
 	}
-	// by Sam
-	// move forawrd btn2
-	if (getbtns() == 1)
-	{
-		referenceX = referenceX + 1;
-	}
-	// by Sam
-	// move backwards btn 4
-	if (getbtns() == 4)
-	{
-		referenceX = referenceX - 1;
-	}
-
-	// by Alexander
-	// The code implements basic rectangular collision detection.
-	// int isCollisionWithObstacle(int objX, int objY, int obstacleX, int obstacleY)
-	// {
-	// 	// Basic rectangular collision - Assume obj and obstacle have width/height
-	// 	if (objX + objWidth < obstacleX ||
-	// 		objX > obstacleX + obstacleWidth ||
-	// 		objY + objHeight < obstacleY ||
-	// 		objY > obstacleY + obstacleHeight)
-	// 	{
-	// 		return 0; // No collision
-	// 	}
-	// 	else
-	// 	{
-	// 		return 1; // Collision detected
-	// 	}
-	// }
-
-	// int collisionDetected = 0; // Introduce a descriptive variable
-
-	// if (referenceY >= 30 ||
-	// 	referenceY <= 4 ||
-	// 	isCollisionWithObstacle(referenceX, referenceY, obsx, obsy) ||
-	// 	isCollisionWithObstacle(referenceX, referenceY, obsx1, obsy1) ||
-	// 	isCollisionWithObstacle(referenceX, referenceY, obsx2, obsy2) ||
-	// 	isCollisionWithObstacle(referenceX, referenceY, obsx3, obsy3))
-	// {
-	// 	collisionDetected = 1;
-	// }
-
-	// if (collisionDetected)
-	// {
-	// 	while (1) // More explicit infinite loop
-	// 	{
-	// 		display_string(1, gameover1);
-	// 		display_string(2, gameover2);
-	// 		display_update();
-
-	// 		if (getbtns() == 4)
-	// 		{
-	// 			*porte = 0;
-	// 			referenceY = 15;
-	// 			referenceX = 10;
-	// 			obsx = 128;
-	// 			obsx1 = 180;
-	// 			obsx2 = 240;
-	// 			obsx3 = 300;
-	// 			break; // Exit the game loop
-	// 		}
-	// 	}
-	// }
 
 	int whileloop = 1;
-	if (referenceY >= 30 || referenceY <= 0 || ((referenceY - 1) >= obsy - 14 && (referenceX + 5) == obsx) ||
-		(((referenceY - 1) <= (obsy1 + 10)) && ((referenceX + 5) == obsx1)) || (((referenceY - 1) <= obsy2 + 19) && ((referenceX + 5) == obsx2)) || (((referenceY - 1) >= (obsy3 - 18)) && ((referenceX + 5) == obsx3)))
+	if (referenceY >= 30 || referenceY <= 0 || ((referenceY - 1) >= obsy[0] - 14 && (referenceX + 5) == obstaclesX[0]) ||
+		(((referenceY - 1) <= (obsy[1] + 10)) && ((referenceX + 5) == obstaclesX[1])) || (((referenceY - 1) <= obsy[2] + 19) && ((referenceX + 5) == obstaclesX[2])) || (((referenceY - 1) >= (obsy[3] - 18)) && ((referenceX + 5) == obstaclesX[3])))
 	{
 		// ifall vi har någon kollision in i loopen pga 1
 		while (whileloop)
 		{
-			display_string(1, gameover1);
-			display_string(2, gameover2);
+			display_string(0, "Game over");
+			display_string(2, "BTN4 to restart");
+			display_string(1, "");
 			// display update, annars kommer inte att displayed uppdateras och vi ser all text
 			display_update();
 			// reseta allt till deras originella positioner, och ut ur loop
@@ -265,15 +167,15 @@ void labwork(void)
 			if (getbtns() == 4)
 			{
 				delayValue = 80;
-				*porte = 0;
+				*portE = 0;
 
 				whileloop = 0;
 				referenceY = 15;
 				referenceX = 10;
-				obsx = 128;
-				obsx1 = 180;
-				obsx2 = 240;
-				obsx3 = 300;
+				obstaclesX[0] = 128;
+				obstaclesX[1] = 180;
+				obstaclesX[2] = 240;
+				obstaclesX[3] = 300;
 			}
 		}
 	}

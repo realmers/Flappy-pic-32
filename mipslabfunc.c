@@ -164,23 +164,23 @@ void DrawBoxCharacter(int referenceX, int referenceY)
 }
 
 // By Alexander
-void MarkObstacles(int obsx, int obsy, int length, int direction) {
+void MarkObstacles(int obstacleX, int obstacleY, int length, int direction) {
   int i;
     for (i = 0; i < length; i++) {
-        DrawDot(obsx, obsy + i * direction);
-        DrawDot(obsx - 1, obsy + i * direction);
-        DrawDot(obsx - 2, obsy + i * direction);
+        DrawDot(obstacleX, obstacleY + i * direction);
+        DrawDot(obstacleX - 1, obstacleY + i * direction);
+        DrawDot(obstacleX - 2, obstacleY + i * direction);
     }
 }
 
 // by Alexander
-void DrawCeilingAndFloor(int wallx, int wally)
+void DrawCeilingAndFloor(int ceiling, int floor)
 {
   int i;
   for (i = 0; i < 128; i++)
   {
-    DrawDot(wallx + i, wally);
-    DrawDot(wallx + i, wally + 31);
+    DrawDot(ceiling + i, floor);
+    DrawDot(ceiling + i, floor + 31);
   }
 }
 
