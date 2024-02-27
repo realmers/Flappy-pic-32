@@ -14,12 +14,11 @@
 #include <pic32mx.h> /* Declarations of system-specific addresses etc */
 #include "mipslab.h" /* Declatations for these labs */
 
-//By Luis, 1000/30
-#define TMR2PERIOD ((80000000 / 256) / 30) /*30fps => 33,333ms*/
+//By Luis, 1000/45
+#define TMR2PERIOD ((80000000 / 256) / 45) /*45fps => 22,222...ms*/
+float delayValue = 80;
 
-
-// #define TMR2PERIOD ((80000000 / 256) / 10) //initialize tmr2period
-// by Sam
+// by Alexander
 int referenceX = 15;
 int referenceY = 10;
 
@@ -54,9 +53,7 @@ char gameover2[] = "BTN4 to restart";
 
 volatile int *porte = (volatile int *)0xbf886110;
 
-/* ISR*/
-// kallas varje gång det är interrupt
-// by Robert
+
 void user_isr(void)
 {
 	// när interupt kör den user
@@ -143,9 +140,11 @@ void labwork(void)
 	// by Robert
 	referenceY = referenceY + 1;
 
-	// delay annars går allt super snabbt
-	// by Robert
-	// delay(30.2);
+	// by Luis
+	
+	delay(delayValue);
+	delayValue -= 0.1;
+
 
 	// obstacles rör sig till vänster hela tiden
 	// by Robert
