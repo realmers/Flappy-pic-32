@@ -128,7 +128,7 @@ void display_init(void)
 }
 
 // by Robert
-void drawPixel(int x, int y)
+void DrawDot(int x, int y)
 {
   // Check if out of bounds
   if (y < 0 || x < 0 || x > 127 || y > 32)
@@ -151,15 +151,15 @@ int mark;
 // by sam
 void mark_square1(int referenceX, int referenceY)
 {
-  drawPixel(referenceX, referenceY);
+  DrawDot(referenceX, referenceY);
 
   for (mark = 0; mark < 8; mark++)
   {
-    drawPixel(referenceX + mark, referenceY);
-    drawPixel(referenceX + mark, referenceY + 1);
-    drawPixel(referenceX + mark, referenceY + 2);
-    drawPixel(referenceX + mark, referenceY + 3);
-    drawPixel(referenceX + mark, referenceY + 4);
+    DrawDot(referenceX + mark, referenceY);
+    DrawDot(referenceX + mark, referenceY + 1);
+    DrawDot(referenceX + mark, referenceY + 2);
+    DrawDot(referenceX + mark, referenceY + 3);
+    DrawDot(referenceX + mark, referenceY + 4);
   }
 }
 
@@ -185,9 +185,9 @@ void mark_obs(int obsx, int obsy, int length, int direction) {
 
     // direction: 1 for upwards, -1 for downwards 
     for (i = 0; i < length; i++) {
-        drawPixel(obsx, obsy + i * direction);
-        drawPixel(obsx - 1, obsy + i * direction);
-        drawPixel(obsx - 2, obsy + i * direction);
+        DrawDot(obsx, obsy + i * direction);
+        DrawDot(obsx - 1, obsy + i * direction);
+        DrawDot(obsx - 2, obsy + i * direction);
     }
 }
 
@@ -197,8 +197,8 @@ void mark_wall(int wallx, int wally)
   int i;
   for (i = 0; i < 128; i++)
   {
-    drawPixel(wallx + i, wally);
-    drawPixel(wallx + i, wally + 31);
+    DrawDot(wallx + i, wally);
+    DrawDot(wallx + i, wally + 31);
   }
 }
 
