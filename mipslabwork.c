@@ -35,15 +35,13 @@ void labinit(void)
 }
 
 int checkCollision() {
-    int i;
-    for (i = 0; i < 4; i++) {
-        if (((referenceY - 1) >= obsy[i] - 14 && (referenceX + 5) == obstaclesX[i]) ||
-            (((referenceY - 1) <= (obsy[i] + 10)) && ((referenceX + 5) == obstaclesX[i])) ||
-            (((referenceY - 1) <= obsy[i] + 19) && ((referenceX + 5) == obstaclesX[i])) ||
-            (((referenceY - 1) >= (obsy[i] - 18)) && ((referenceX + 5) == obstaclesX[i]))) {
+    	if (((referenceY - 1) >= obsy[0] - 14 && (referenceX + 5) == obstaclesX[0]) ||
+            (((referenceY - 1) <= (obsy[1] + 10)) && ((referenceX + 5) == obstaclesX[1])) ||
+            (((referenceY - 1) <= obsy[2] + 19) && ((referenceX + 5) == obstaclesX[2])) ||
+            (((referenceY - 1) >= (obsy[3] - 18)) && ((referenceX + 5) == obstaclesX[3]))) {
             return 1;
         }
-    }
+    
     return 0;
 }
 
