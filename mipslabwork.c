@@ -74,10 +74,10 @@ void labwork(void)
     display_string(0, "");
     DrawBoxCharacter(referenceX, referenceY);
 
-    MarkObstacles(obstaclesX[0], obstacleY[0], 18, -1);  // Downwards
-    MarkObstacles(obstaclesX[1], obstacleY[1], 12, 1);   // Upwards
-    MarkObstacles(obstaclesX[2], obstacleY[2], 20, 1);   // Upwards
-    MarkObstacles(obstaclesX[3], obstacleY[3], 16, -1); // Downwards
+    MarkObstacles(obstaclesX[0], obstacleY[0], 18, -1); 
+    MarkObstacles(obstaclesX[1], obstacleY[1], 12, 1);  
+    MarkObstacles(obstaclesX[2], obstacleY[2], 20, 1);  
+    MarkObstacles(obstaclesX[3], obstacleY[3], 16, -1); 
 
     DrawCeilingAndFloor(ceiling, floor);
     display_image(0, icon);
