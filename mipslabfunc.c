@@ -127,7 +127,7 @@ void display_init(void)
   spi_send_recv(0xAF);
 }
 
-// by Robert
+// by Alexander
 void DrawDot(int x, int y)
 {
   // Check if out of bounds
